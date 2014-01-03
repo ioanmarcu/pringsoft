@@ -1,0 +1,2 @@
+serviceClass: com.pringsoft.webapp.client.GreetingService
+path: B282EA9EA410F84181ED165A98F19558.gwt.rpc
