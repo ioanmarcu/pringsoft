@@ -1,2 +1,3 @@
 # Module webapp
 # RPC service class, partial path of RPC policy file
+com.pringsoft.webapp.client.GreetingService, B282EA9EA410F84181ED165A98F19558.gwt.rpc
