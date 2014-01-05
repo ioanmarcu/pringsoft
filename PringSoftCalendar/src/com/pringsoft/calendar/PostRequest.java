@@ -36,7 +36,7 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 	    try {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-	        nameValuePairs.add(new BasicNameValuePair("name", "AndDev is Cool!"));
+	        nameValuePairs.add(new BasicNameValuePair("name", "Test123"));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 	        // Execute HTTP Post Request
@@ -45,7 +45,6 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 	        InputStream in = entity.getContent();
 	        BufferedReader br = new BufferedReader(new InputStreamReader(in));
 	        String body = br.readLine();
-	        body = "asd";
 	        if (body.isEmpty())
 	        	body = "Message empty with status code: " + String.valueOf(response.getStatusLine().getStatusCode());
 	        return body;
