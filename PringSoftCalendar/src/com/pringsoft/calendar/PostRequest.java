@@ -60,6 +60,11 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 		return null;
 	}
 	
+	protected String event()
+	{
+		return null;
+	}
+	
 	protected void onPostExecute(String result) {
         ma.done("Result: " + result);
     }

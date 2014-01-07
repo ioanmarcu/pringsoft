@@ -1,6 +1,7 @@
 package com.pringsoft.calendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -22,12 +23,14 @@ public class MainActivity extends Activity {
 	}
 	
 	public void postData(View view) {
-		new PostRequest(this).execute();
+		//new PostRequest(this).execute();
+		Intent intent = new Intent(this, NewEvent.class);
+		
+		
+	    startActivity(intent);
 	}
 
 	public void done(String response) {
-		TextView text = (TextView) findViewById(R.id.textView2);
-		text.setText(response);
 	}
 
 }
