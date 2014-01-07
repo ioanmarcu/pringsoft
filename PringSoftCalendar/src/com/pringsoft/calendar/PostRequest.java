@@ -31,7 +31,7 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 	@Override
 	protected String doInBackground(Void... params) {
 		HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://poetic-loop-451.appspot.com/webapp/greet");
+	    HttpPost httppost = new HttpPost("http://localhost:8080/Tommy/TommyServlet");
 
 	    try {
 	        // Add your data
