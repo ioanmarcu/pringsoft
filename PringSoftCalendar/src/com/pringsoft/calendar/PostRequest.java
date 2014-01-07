@@ -31,12 +31,12 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 	@Override
 	protected String doInBackground(Void... params) {
 		HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://localhost:8080/Tommy/TommyServlet");
+	    HttpPost httppost = new HttpPost("http://192.168.0.100:8080/Tommy/TommyServlet");
 
 	    try {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-	        nameValuePairs.add(new BasicNameValuePair("name", "Test123"));
+	        nameValuePairs.add(new BasicNameValuePair("asd", "Test123"));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 	        // Execute HTTP Post Request
@@ -44,7 +44,11 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 	        HttpEntity entity = response.getEntity();
 	        InputStream in = entity.getContent();
 	        BufferedReader br = new BufferedReader(new InputStreamReader(in));
-	        String body = br.readLine();
+	        String body = "";
+	        String temp;
+	        while ((temp = br.readLine())!=null)
+	        	body += temp;
+	        
 	        if (body.isEmpty())
 	        	body = "Message empty with status code: " + String.valueOf(response.getStatusLine().getStatusCode());
 	        return body;
