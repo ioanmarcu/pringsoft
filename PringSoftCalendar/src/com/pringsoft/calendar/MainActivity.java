@@ -22,15 +22,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	public void postData(View view) {
+	public void newEvent(View view) {
 		//new PostRequest(this).execute();
 		Intent intent = new Intent(this, NewEvent.class);
-		
-		
-	    startActivity(intent);
+		startActivity(intent);
 	}
 
-	public void done(String response) {
-	}
 
 }

@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="676dp"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,12 +15,13 @@
         tools:context=".NewEvent" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:ems="10" >
+            android:ems="10"
+            android:hint="Eveniment" >
 
             <requestFocus />
         </EditText>
@@ -37,18 +38,39 @@
             android:id="@+id/timePicker1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText1"
+            android:layout_below="@+id/event"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="28dp" />
+            android:layout_marginTop="28dp"
+            android:contentDescription="Eveniment" />
 
-        <Button
-            android:id="@+id/button1"
+        <EditText
+            android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/timePicker1"
+            android:layout_alignLeft="@+id/event"
             android:layout_below="@+id/datePicker1"
-            android:layout_marginTop="22dp"
+            android:ems="10"
+            android:hint="Locație" />
+
+        <Button
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/datePicker1"
+            android:onClick="postData"
             android:text="Create" />
+
+        <EditText
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/location"
+            android:layout_below="@+id/location"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="Comentarii"
+            android:inputType="textMultiLine" />
 
     </RelativeLayout>
 

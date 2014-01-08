@@ -23,9 +23,9 @@ import android.util.Log;
 
 public class PostRequest extends AsyncTask<Void, Void, String> {
 	
-	MainActivity ma = null;
-	public PostRequest(MainActivity ma) {
-		this.ma = ma;
+	NewEvent ma = null;
+	public PostRequest(NewEvent newEvent) {
+		this.ma = newEvent;
 	}
 	
 	@Override
