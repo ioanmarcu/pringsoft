@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -16,12 +17,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class PostRequest extends AsyncTask<Void, Void, String> {
+public class PostRequest extends AsyncTask<String, Void, String> {
 	
 	NewEvent ma = null;
 	public PostRequest(NewEvent newEvent) {
@@ -29,14 +29,17 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 	}
 	
 	@Override
-	protected String doInBackground(Void... params) {
-		HttpClient httpclient = new DefaultHttpClient();
+	protected String doInBackground(String... params) {
+		HttpClient httpclient = new DefaultHttpClient();Log.i("asdf",Arrays.toString(params));
 	    HttpPost httppost = new HttpPost("http://192.168.0.100:8080/Tommy/TommyServlet");
 
 	    try {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-	        nameValuePairs.add(new BasicNameValuePair("asd", "Test123"));
+	        nameValuePairs.add(new BasicNameValuePair("asd", params[0]));
+	        nameValuePairs.add(new BasicNameValuePair("asd2", params[1]));
+	        nameValuePairs.add(new BasicNameValuePair("asd3", params[2]));
+	        
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 	        // Execute HTTP Post Request

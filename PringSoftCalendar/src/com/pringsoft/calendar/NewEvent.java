@@ -1,8 +1,10 @@
 package com.pringsoft.calendar;
 
+import java.util.Arrays;
+
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +54,7 @@ public class NewEvent extends Activity {
 	}
 
 	public void postData(View view) {
-		new PostRequest(this).execute();
+		new PostRequest(this).execute("hi","hi2","hi3");
 	}
 	
 
