@@ -1,13 +1,14 @@
 package com.pringsoft.calendar;
 
-import java.util.Arrays;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
 import android.support.v4.app.NavUtils;
 
 public class NewEvent extends Activity {
@@ -54,7 +55,12 @@ public class NewEvent extends Activity {
 	}
 
 	public void postData(View view) {
-		new PostRequest(this).execute("hi","hi2","hi3");
+		String event = ((EditText) findViewById(R.id.event)).getText().toString();
+		String date = ((DatePicker) findViewById(R.id.datePicker1)).getDayOfMonth() + "/" + (((DatePicker) findViewById(R.id.datePicker1)).getMonth() + 1) + "/" + ((DatePicker) findViewById(R.id.datePicker1)).getYear() ;
+		String time = ((TimePicker) findViewById(R.id.timePicker1)).getCurrentHour() + ":" + ((TimePicker) findViewById(R.id.timePicker1)).getCurrentMinute();
+		String location = ((EditText) findViewById(R.id.location)).getText().toString();
+		String comment = ((EditText) findViewById(R.id.comment)).getText().toString();
+		new PostRequest(this).execute(event, date, time, location, comment);
 	}
 	
 
