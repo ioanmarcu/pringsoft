@@ -11,16 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.User;
+import com.model.Event;
 import com.dao.UserDao;
+import com.dao.EventDao;
 @WebServlet("/UserController")
 public class UserController extends HttpServlet {
 		
        private static final long serialVersionUID = 1L;
           private UserDao dao;
+          private EventDao dao1;
 
           public UserController() {
               super();
               dao = new UserDao();
+              dao1=new EventDao();
           }
 
       public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +44,21 @@ public class UserController extends HttpServlet {
             	  PrintWriter out = response.getWriter();
             	  out.print(dao.getAllUsers());
                   request.setAttribute("users",dao.getAllUsers());
+              }
+              //////////////////////////////////////
+              if (action.equalsIgnoreCase("delete")){
+                  int Ev_id = Integer.parseInt(request.getParameter("Ev_id"));
+                  dao1.deleteEvent(Ev_id);
+                  request.setAttribute("evenimente", dao1.getAllEvents());   
+              } else if (action.equalsIgnoreCase("edit")){
+                  int Ev_id = Integer.parseInt(request.getParameter("Ev_id"));
+                  Event event = dao1.getEventById(Ev_id);
+                  request.setAttribute("event", event);
+              } else if (action.equalsIgnoreCase("listEvent")){
+            	  response.setContentType("text/html");
+            	  PrintWriter out = response.getWriter();
+            	  out.print(dao1.getAllEvents());
+                  request.setAttribute("event",dao1.getAllEvents());
               } 
       }
 
@@ -60,6 +79,24 @@ public class UserController extends HttpServlet {
                         dao.updateUser(user);
                   }
                   request.setAttribute("users", dao.getAllUsers());
+                  //////////////////////////////////////////////
+                  Event event = new Event();
+                  event.setNume(request.getParameter("Nume"));
+                  event.setOra(request.getParameter("Ora"));
+                  event.setData(request.getParameter("Data"));
+                  event.setLocatie(request.getParameter("Locatie"));
+                  event.setComentarii(request.getParameter("Comentarii"));
+                  String Ev_id = request.getParameter("Ev_id");
+                  if(Ev_id == null || Ev_id.isEmpty())
+                  {
+                        dao1.addEvent(event);
+                  }
+                  else
+                  {
+                        event.setEv_id(Integer.parseInt(Ev_id));
+                        dao1.updateEvent(event);
+                  }
+                  request.setAttribute("evenimente", dao1.getAllEvents());
      
       }
 
