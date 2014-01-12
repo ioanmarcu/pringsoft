@@ -19,14 +19,13 @@ public class EventDao {
            
             conn_ev = DBUtil.getConnection();
             PreparedStatement pStmt_ev = conn_ev
-                    .prepareStatement("insert into evenimente(Ev_id,Nume,Ora,Data,Locatie,Comentarii) values (?, ?, ?, ?, ? , ?)");
+                    .prepareStatement("insert into evenimente(Nume,Ora,Data,Locatie,Comentarii) values (?, ?, ?, ? , ?)");
 
-            pStmt_ev.setInt(1, event.getEv_id());
-            pStmt_ev.setString(2, event.getNume());
-            pStmt_ev.setString(3,event.getOra());
-            pStmt_ev.setString(4, event.getData());
-            pStmt_ev.setString(5, event.getLocatie());
-            pStmt_ev.setString(6, event.getComentarii());
+            pStmt_ev.setString(1, event.getNume());
+            pStmt_ev.setString(2,event.getOra());
+            pStmt_ev.setString(3, event.getData());
+            pStmt_ev.setString(4, event.getLocatie());
+            pStmt_ev.setString(5, event.getComentarii());
             pStmt_ev.executeUpdate();
 
         } catch (SQLException e) {

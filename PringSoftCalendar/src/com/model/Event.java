@@ -2,17 +2,17 @@
 
 public class Event {
 
-    private int Ev_id;
+    private Integer Ev_id = null;
     private String Nume;
     private String Ora;
     private String Data;
     private String Locatie;
     private String Comentarii;
     
-    public int getEv_id() {
+    public Integer getEv_id() {
         return Ev_id;
     }
-    public void setEv_id(int Ev_id) {
+    public void setEv_id(Integer Ev_id) {
         this.Ev_id = Ev_id;
     }
     public String getNume() {

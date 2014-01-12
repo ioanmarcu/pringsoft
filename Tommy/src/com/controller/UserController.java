@@ -14,6 +14,7 @@ import com.model.User;
 import com.model.Event;
 import com.dao.UserDao;
 import com.dao.EventDao;
+import com.google.gson.Gson;
 @WebServlet("/UserController")
 public class UserController extends HttpServlet {
 		
@@ -61,13 +62,13 @@ public class UserController extends HttpServlet {
                   request.setAttribute("event",dao1.getAllEvents());
               }
                 else if (action.equalsIgnoreCase("addEvent")){
+                	
                 	Event e = new Event();
-                	e.setEv_id(5);
-                	e.setNume("Eveniment");
-                	e.setData("multe date");
-                	e.setOra("18:00");
-                	e.setLocatie("Acolo");
-                	e.setComentarii("pentru ca eveniment");                	
+                	e.setNume(request.getParameter("nume"));
+                	e.setData(request.getParameter("data"));
+                	e.setOra(request.getParameter("ora"));
+                	e.setLocatie(request.getParameter("locatie"));
+                	e.setComentarii(request.getParameter("comentariu"));                	
                 	dao1.addEvent(e);
                 	request.setAttribute("event",dao1.getAllEvents());
                 	                	                                 
@@ -75,37 +76,39 @@ public class UserController extends HttpServlet {
       }
 
       public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                  User user = new User();
-                  user.setFirstName(request.getParameter("firstName"));
-                  user.setLastName(request.getParameter("lastName"));
-                  user.setDob(request.getParameter("dob"));
-                  user.setEmail(request.getParameter("email"));
-                  String userid = request.getParameter("userid");
-                  if(userid == null || userid.isEmpty())
-                  {
-                        dao.addUser(user);
-                  }
-                  else
-                  {
-                        user.setUserid(Integer.parseInt(userid));
-                        dao.updateUser(user);
-                  }
+//                  User user = new User();
+//                  user.setFirstName(request.getParameter("firstName"));
+//                  user.setLastName(request.getParameter("lastName"));
+//                  user.setDob(request.getParameter("dob"));
+//                  user.setEmail(request.getParameter("email"));
+//                  String userid = request.getParameter("userid");
+//                  if(userid == null || userid.isEmpty())
+//                  {
+//                        dao.addUser(user);
+//                  }
+//                  else
+//                  {
+//                        user.setUserid(Integer.parseInt(userid));
+//                        dao.updateUser(user);
+//                  }
                   request.setAttribute("users", dao.getAllUsers());
                   //////////////////////////////////////////////
-                  Event event = new Event();
-                  event.setNume(request.getParameter("Nume"));
-                  event.setOra(request.getParameter("Ora"));
-                  event.setData(request.getParameter("Data"));
-                  event.setLocatie(request.getParameter("Locatie"));
-                  event.setComentarii(request.getParameter("Comentarii"));
-                  String Ev_id = request.getParameter("Ev_id");
-                  if(Ev_id == null || Ev_id.isEmpty())
+                  String json = request.getParameter("json");
+                  Gson gson = new Gson();
+                  Event event = gson.fromJson(json, Event.class);
+//                  event.setNume();
+//                  event.setOra(request.getParameter("Ora"));
+//                  event.setData(request.getParameter("Data"));
+//                  event.setLocatie(request.getParameter("Locatie"));
+//                  event.setComentarii(request.getParameter("Comentarii"));
+//                  String Ev_id = request.getParameter("Ev_id");
+                  if(event.getEv_id() == null)
                   {
                         dao1.addEvent(event);
                   }
                   else
                   {
-                        event.setEv_id(Integer.parseInt(Ev_id));
+//                        event.setEv_id(Integer.parseInt(Ev_id));
                         dao1.updateEvent(event);
                   }
                   request.setAttribute("evenimente", dao1.getAllEvents());

@@ -1,8 +1,12 @@
 package com.pringsoft.calendar;
 
 
+import com.google.gson.Gson;
+import com.model.Event;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,10 +64,19 @@ public class NewEvent extends Activity {
 		String time = ((TimePicker) findViewById(R.id.timePicker1)).getCurrentHour() + ":" + ((TimePicker) findViewById(R.id.timePicker1)).getCurrentMinute();
 		String location = ((EditText) findViewById(R.id.location)).getText().toString();
 		String comment = ((EditText) findViewById(R.id.comment)).getText().toString();
-		new PostRequest(this).execute(event, date, time, location, comment);
+		Event e = new Event();
+		e.setNume(event);
+    	e.setData(date);
+    	e.setOra(time);
+    	e.setLocatie(location);
+    	e.setComentarii(comment);  
+    	Gson gson = new Gson();
+    	String json = gson.toJson(e);
+		new PostRequest(this).execute(json);
 	}
 	
 
 	public void done(String response) {
+		Log.d("hi",response);
 	}
 }

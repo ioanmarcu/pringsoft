@@ -18,6 +18,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.model.Event;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -26,22 +28,20 @@ public class PostRequest extends AsyncTask<String, Void, String> {
 	NewEvent ma = null;
 	public PostRequest(NewEvent newEvent) {
 		this.ma = newEvent;
+		
 	}
 	
 	@Override
 	protected String doInBackground(String... params) {
 		HttpClient httpclient = new DefaultHttpClient();
 		Log.i("dataz",Arrays.toString(params));
-	    HttpPost httppost = new HttpPost("http://192.168.0.100:8080/Tommy/TommyServlet");
+	    HttpPost httppost = new HttpPost("http://192.168.1.101:8080/Tommy/UserController");
 
 	    try {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-	        nameValuePairs.add(new BasicNameValuePair("event", params[0]));
-	        nameValuePairs.add(new BasicNameValuePair("date", params[1]));
-	        nameValuePairs.add(new BasicNameValuePair("time", params[2]));
-	        nameValuePairs.add(new BasicNameValuePair("location", params[3]));
-	        nameValuePairs.add(new BasicNameValuePair("comment", params[4]));
+	        nameValuePairs.add(new BasicNameValuePair("json", params[0]));
+	        nameValuePairs.add(new BasicNameValuePair("action", "addEvent"));
 	        
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
