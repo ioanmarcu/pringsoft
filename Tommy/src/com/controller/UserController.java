@@ -59,6 +59,18 @@ public class UserController extends HttpServlet {
             	  PrintWriter out = response.getWriter();
             	  out.print(dao1.getAllEvents());
                   request.setAttribute("event",dao1.getAllEvents());
+              }
+                else if (action.equalsIgnoreCase("addEvent")){
+                	Event e = new Event();
+                	e.setEv_id(5);
+                	e.setNume("Eveniment");
+                	e.setData("multe date");
+                	e.setOra("18:00");
+                	e.setLocatie("Acolo");
+                	e.setComentarii("pentru ca eveniment");                	
+                	dao1.addEvent(e);
+                	request.setAttribute("event",dao1.getAllEvents());
+                	                	                                 
               } 
       }
 

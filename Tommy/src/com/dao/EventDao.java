@@ -19,7 +19,7 @@ public class EventDao {
            
             conn_ev = DBUtil.getConnection();
             PreparedStatement pStmt_ev = conn_ev
-                    .prepareStatement("insert into evenimente(Ev_id,Nume,Ora,Data,Locatie,Comentarii) values (?, ?, ?, ? )");
+                    .prepareStatement("insert into evenimente(Ev_id,Nume,Ora,Data,Locatie,Comentarii) values (?, ?, ?, ?, ? , ?)");
 
             pStmt_ev.setInt(1, event.getEv_id());
             pStmt_ev.setString(2, event.getNume());
