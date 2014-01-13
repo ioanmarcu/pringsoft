@@ -26,6 +26,13 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, NewEvent.class);
 		startActivity(intent);
 	}
+	
+	public void listEvent(View view) {
+		//new PostRequest(this).execute();
+		Intent intent = new Intent(this, ListEvents.class);
+		startActivity(intent);
+	}
+	
 
 
 }

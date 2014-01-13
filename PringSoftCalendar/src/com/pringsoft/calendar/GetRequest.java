@@ -14,57 +14,56 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.model.Event;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class PostRequest extends AsyncTask<String, Void, String> {
-	
-	NewEvent ma = null;
-	public PostRequest(NewEvent newEvent) {
-		this.ma = newEvent;
+public class GetRequest extends AsyncTask<String, Void, String>{
+
+	ListEvents ma = null;
+	public GetRequest(ListEvents listEvent) {
+		this.ma = listEvent;
 		
 	}
-	
 	@Override
 	protected String doInBackground(String... params) {
 		HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://10.13.10.34:8080/Tommy/UserController");
-
-	    String body = "";
+		Log.i("dataz",Arrays.toString(params));
+		HttpGet httppost = new HttpGet("http://10.13.10.34:8080/Tommy/UserController?action=listEvent");
+		String body = "";
 	    try {
 	        // Add your data
-	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-	        nameValuePairs.add(new BasicNameValuePair("json", params[0]));
-	        nameValuePairs.add(new BasicNameValuePair("action", "addEvent"));
-	        
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(0);
+	        nameValuePairs.add(new BasicNameValuePair("action", "listEvent"));
 
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
 	        HttpEntity entity = response.getEntity();
 	        InputStream in = entity.getContent();
 	        BufferedReader br = new BufferedReader(new InputStreamReader(in));
-	        
 	        String temp;
 	        while ((temp = br.readLine())!=null)
 	        	body += temp;
+	        Log.i("hi",response.toString());
 	        
 	        if (body.isEmpty())
 	        	body = "Message empty with status code: " + String.valueOf(response.getStatusLine().getStatusCode());
-	        Log.i("dataz",body);
 	        return body;
 	    } catch (ClientProtocolException e) {
 	        // TODO Auto-generated catch block
 	    } catch (IOException e) {
-	        body = "Could not connect to server!";
+	        body = "Can't connect to server";
 	    }
 		return body;
+	}
+	
+	protected String event()
+	{
+		return null;
 	}
 	
 	protected void onPostExecute(String result) {

@@ -49,6 +49,6 @@ public class Event {
     public String toString() {
         return "Eveniment=" + Ev_id + "," + Nume
                 + "," + Ora + "," + Data + ","
-                + Locatie + ","+Comentarii;
+                + Locatie + ","+Comentarii + "\n";
     }   
 }

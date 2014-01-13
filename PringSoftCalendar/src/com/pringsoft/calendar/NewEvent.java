@@ -6,6 +6,7 @@ import com.model.Event;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 public class NewEvent extends Activity {
@@ -75,8 +77,16 @@ public class NewEvent extends Activity {
 		new PostRequest(this).execute(json);
 	}
 	
+	public void toastMe(String message)
+	{
+		Context context = getApplicationContext();
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(context, message, duration);
+		toast.show();
+	}
 
 	public void done(String response) {
 		Log.d("hi",response);
+		toastMe(response);
 	}
 }

@@ -30,6 +30,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pringsoft.calendar.MainActivity" />
         </activity>
+        <activity
+            android:name="com.pringsoft.calendar.ConnectActivity"
+            android:label="@string/title_activity_connect"
+            android:parentActivityName="com.pringsoft.calendar.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pringsoft.calendar.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.pringsoft.calendar.ListActivity"
+            android:label="@string/title_activity_list"
+            android:parentActivityName="com.pringsoft.calendar.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pringsoft.calendar.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.pringsoft.calendar.ListEvents"
+            android:label="@string/title_activity_list_events"
+            android:parentActivityName="com.pringsoft.calendar.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pringsoft.calendar.MainActivity" />
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />

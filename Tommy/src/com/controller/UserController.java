@@ -56,10 +56,16 @@ public class UserController extends HttpServlet {
                   Event event = dao1.getEventById(Ev_id);
                   request.setAttribute("event", event);
               } else if (action.equalsIgnoreCase("listEvent")){
+            	  System.out.println("listEvents");
             	  response.setContentType("text/html");
             	  PrintWriter out = response.getWriter();
-            	  out.print(dao1.getAllEvents());
-                  request.setAttribute("event",dao1.getAllEvents());
+            	  System.out.println("apel listEvent");
+            	  Gson gson = new Gson();
+            	  out.print("hiii"+gson.toJson(dao1.getAllEvents()));
+            	  System.out.print("hiii2"+gson.toJson(dao1.getAllEvents()));
+            	  out.flush();
+            	  out.close();
+                  request.setAttribute("event",gson.toJson(dao1.getAllEvents()));
               }
                 else if (action.equalsIgnoreCase("addEvent")){
                 	
