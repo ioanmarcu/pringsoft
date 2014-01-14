@@ -47,8 +47,8 @@ public class Event {
     }
     @Override
     public String toString() {
-        return "Eveniment=" + Ev_id + "," + Nume
-                + "," + Ora + "," + Data + ","
-                + Locatie + ","+Comentarii + "\n";
+        return "Event: " + Nume
+                + "\nData & ora: "  + Data + " " + Ora + "\nLocatie: "
+                + Locatie + "\nDetalii: "+Comentarii + "\n";
     }   
 }
