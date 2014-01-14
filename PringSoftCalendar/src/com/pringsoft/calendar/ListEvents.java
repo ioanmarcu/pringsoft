@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.lang.reflect.Type;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,6 +20,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.model.Event;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -81,6 +87,17 @@ public class ListEvents extends Activity {
 	public void setMessage(String message)
 	{
 		((TextView)findViewById(R.id.listevents)).setText(message);
+	}
+	
+	public void formatEvents(String json)
+	{
+		Gson gson = new Gson();
+		Type listType = new TypeToken<List<Event>>(){}.getType();
+		List<Event> eventList = gson.fromJson(json, listType);
+		for (Iterator<Event> it = eventList.iterator(); it.hasNext(); )
+		{
+			setMessage(it.next().toString());
+		}
 	}
 
 	public void done(String response) {
