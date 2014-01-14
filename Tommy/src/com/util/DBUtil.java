@@ -1,7 +1,6 @@
  package com.util;
 
 import java.sql.*;
-import com.mysql.jdbc.Driver;
 
 public class DBUtil {
 

@@ -15,11 +15,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,11 +46,18 @@ public class MainActivity extends Activity {
 	    findViewById(R.id.btnCancelNotification).setOnClickListener(handler);
 	}
 
-	@Override
+	@Override	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent mServiceIntent = new Intent(this, BackgroundService.class);
+		startService(mServiceIntent);
+		return super.onContextItemSelected(item);
 	}
 	
 	public void newEvent(View view) {
