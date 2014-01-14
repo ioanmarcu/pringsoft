@@ -29,4 +29,21 @@
         android:onClick="listEvent"
         android:text="List Events" />
 
+    <Button
+        android:id="@+id/btnShowNotification"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/list_event"
+        android:layout_centerVertical="true"
+        android:text="Show Notification" />
+
+    <Button
+        android:id="@+id/btnCancelNotification"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnShowNotification"
+        android:layout_below="@+id/btnShowNotification"
+        android:layout_marginTop="18dp"
+        android:text="Cancel Notification" />
+
 </RelativeLayout>
