@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -17,9 +16,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
-import com.model.Event;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -28,13 +24,12 @@ public class PostRequest extends AsyncTask<String, Void, String> {
 	NewEvent ma = null;
 	public PostRequest(NewEvent newEvent) {
 		this.ma = newEvent;
-		
 	}
 	
 	@Override
 	protected String doInBackground(String... params) {
 		HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://10.13.10.34:8080/Tommy/UserController");
+	    HttpPost httppost = new HttpPost("http://192.168.0.102:8080/Tommy/UserController");
 
 	    String body = "";
 	    try {

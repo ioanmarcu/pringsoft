@@ -54,6 +54,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pringsoft.calendar.MainActivity" />
         </activity>
+        <service
+            android:name="com.pringsoft.calendar.BackgroundService"
+            android:exported="false"/>    
     </application>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
