@@ -34,6 +34,7 @@ public class BackgroundService extends IntentService {
 		Log.e("baa","cf3");
 		long endTime = System.currentTimeMillis() + 5*1000;
 		while (true)
+		{
 	      while (System.currentTimeMillis() < endTime) {
 	    	  Log.e("baa","s1");
 	          synchronized (this) {
@@ -48,6 +49,8 @@ public class BackgroundService extends IntentService {
 	          }
 	          Log.e("baa","s5");
 	      }
+	      endTime = System.currentTimeMillis() + 5*1000;
+		}
 
     }
 

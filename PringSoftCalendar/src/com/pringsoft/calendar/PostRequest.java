@@ -29,7 +29,7 @@ public class PostRequest extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://192.168.0.102:8080/Tommy/UserController");
+	    HttpPost httppost = new HttpPost("http://192.168.0.100:8080/Tommy/UserController");
 
 	    String body = "";
 	    try {

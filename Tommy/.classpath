@@ -12,8 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/PringSoftCalendar"/>
-	<classpathentry kind="lib" path="D:/Facultate/Anul 3/Inginerie  Software/Proj/pringsoft/Tommy/WebContent/WEB-INF/lib/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="D:/Facultate/Anul 3/Inginerie  Software/Proj/pringsoft/Tommy/WebContent/WEB-INF/lib/mysql-connector-java-5.1.28-bin.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.28-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
