@@ -68,7 +68,20 @@ public class BackgroundService extends IntentService {
 		if (prefs == null)
 			Log.wtf("baa", "prefs ii null");
 		Log.e("baa", "cf4");
-		toastMe(message);
+		String fetch = prefs.getString(dateTimeKey, "nothing");
+		String outputmessage;
+		if (fetch.compareTo(message)==0)
+		{
+			outputmessage = "Nothing new";
+		}
+		else if (fetch.compareTo("nothing")==0)
+		{
+			outputmessage = "Error";
+		}
+		else
+			outputmessage = "Check the events page";
+		toastMe(outputmessage);
+			
 		prefs.edit().putString(dateTimeKey, message).commit();
 		
 	}
