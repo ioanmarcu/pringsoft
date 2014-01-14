@@ -28,11 +28,15 @@ import com.model.Event;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 public class ListEvents extends Activity {
@@ -80,13 +84,25 @@ public class ListEvents extends Activity {
 	
 	public void getEvents(View view)
 	{
-		setMessage("Fetching latest events...");
+		Context context = getApplicationContext();
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(context, "Fetching latest events...", duration);
+		toast.show();
 		new GetRequest(this).execute();
 	}
 	
-	public void setMessage(String message)
+	public void setMessage(Event event)
 	{
-		((TextView)findViewById(R.id.listevents)).setText(message);
+		ListView listView = (ListView) findViewById(R.id.listevents);
+        String[] statesList =new String[5];
+        statesList[0]=event.getNume();
+        statesList[1]=event.getOra();
+        statesList[2]=event.getData();
+        statesList[3]=event.getLocatie();
+        statesList[4]=event.getComentarii();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        android.R.layout.simple_list_item_1, android.R.id.text1, statesList);
+        listView.setAdapter(adapter);
 	}
 	
 	public void formatEvents(String json)
@@ -96,12 +112,13 @@ public class ListEvents extends Activity {
 		List<Event> eventList = gson.fromJson(json, listType);
 		for (Iterator<Event> it = eventList.iterator(); it.hasNext(); )
 		{
-			setMessage(it.next().toString());
+			setMessage(it.next());
 		}
+		
 	}
 
 	public void done(String response) {
-		setMessage(response);
+		formatEvents(response);
 	}
 
 }
