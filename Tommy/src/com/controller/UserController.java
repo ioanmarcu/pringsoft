@@ -61,7 +61,7 @@ public class UserController extends HttpServlet {
             	  PrintWriter out = response.getWriter();
             	  System.out.println("apel listEvent");
             	  Gson gson = new Gson();
-            	  out.print("hiii"+gson.toJson(dao1.getAllEvents()));
+            	  out.print(gson.toJson(dao1.getAllEvents()));
             	  System.out.print("hiii2"+gson.toJson(dao1.getAllEvents()));
             	  out.flush();
             	  out.close();

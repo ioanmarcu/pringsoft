@@ -33,7 +33,7 @@ public class GetRequest extends AsyncTask<String, Void, String>{
 	protected String doInBackground(String... params) {
 		HttpClient httpclient = new DefaultHttpClient();
 		Log.i("dataz",Arrays.toString(params));
-		HttpGet httppost = new HttpGet("http://10.13.10.34:8080/Tommy/UserController?action=listEvent");
+		HttpGet httppost = new HttpGet("http://192.168.1.101:8080/Tommy/UserController?action=listEvent");
 		String body = "";
 	    try {
 	        // Add your data

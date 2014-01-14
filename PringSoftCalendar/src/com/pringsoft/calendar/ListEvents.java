@@ -33,8 +33,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
@@ -91,17 +94,11 @@ public class ListEvents extends Activity {
 		new GetRequest(this).execute();
 	}
 	
-	public void setMessage(Event event)
+	public void setMessage(List<Event> eventList)
 	{
-		ListView listView = (ListView) findViewById(R.id.listevents);
-        String[] statesList =new String[5];
-        statesList[0]=event.getNume();
-        statesList[1]=event.getOra();
-        statesList[2]=event.getData();
-        statesList[3]=event.getLocatie();
-        statesList[4]=event.getComentarii();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        android.R.layout.simple_list_item_1, android.R.id.text1, statesList);
+		ListView listView = (ListView) findViewById(R.id.listevents);        
+        ArrayAdapter<Event> adapter = new ArrayAdapter<Event>(this,
+        android.R.layout.simple_list_item_1, eventList);
         listView.setAdapter(adapter);
 	}
 	
@@ -110,11 +107,7 @@ public class ListEvents extends Activity {
 		Gson gson = new Gson();
 		Type listType = new TypeToken<List<Event>>(){}.getType();
 		List<Event> eventList = gson.fromJson(json, listType);
-		for (Iterator<Event> it = eventList.iterator(); it.hasNext(); )
-		{
-			setMessage(it.next());
-		}
-		
+		setMessage(eventList);
 	}
 
 	public void done(String response) {
