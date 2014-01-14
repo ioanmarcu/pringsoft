@@ -86,7 +86,15 @@ public class NewEvent extends Activity {
 	}
 
 	public void done(String response) {
-		Log.d("hi",response);
-		toastMe(response);
+		Log.d("hi",response);	
+		if(response.matches("Message empty with status code: 200")){
+			toastMe("Event added");
+			((EditText) findViewById(R.id.event)).setText("");
+			((EditText) findViewById(R.id.location)).setText("");
+			((EditText) findViewById(R.id.comment)).setText("");
+			this.finish();
+		}
+		else 
+			toastMe(response);
 	}
 }
